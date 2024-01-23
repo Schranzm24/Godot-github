@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://chfxfmh1epqt1"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_evcka"]
+[ext_resource type="Texture2D" uid="uid://c8xkgv3h4e68x" path="res://stand.png" id="2_plefh"]
+[ext_resource type="Texture2D" uid="uid://bl6aqlnrxy5s6" path="res://walk1.png" id="3_v2sri"]
+[ext_resource type="Texture2D" uid="uid://2tfpjwc3tjvg" path="res://walk2.png" id="4_a0ri7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_be5ue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_plefh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("3_v2sri")
+}, {
+"duration": 0.2,
+"texture": ExtResource("4_a0ri7")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_evcka")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(252, 350)
+scale = Vector2(0.148604, 0.148604)
+sprite_frames = SubResource("SpriteFrames_be5ue")
+animation = &"walking"
+frame_progress = 0.269371
