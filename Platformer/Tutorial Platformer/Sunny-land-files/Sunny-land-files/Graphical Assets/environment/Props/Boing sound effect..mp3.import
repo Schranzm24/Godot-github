@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bydbf056os6gs"
+path="res://.godot/imported/Boing sound effect..mp3-41cfe59350c9100d00b9a778f6e629a2.mp3str"
+
+[deps]
+
+source_file="res://Sunny-land-files/Sunny-land-files/Graphical Assets/environment/Props/Boing sound effect..mp3"
+dest_files=["res://.godot/imported/Boing sound effect..mp3-41cfe59350c9100d00b9a778f6e629a2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
