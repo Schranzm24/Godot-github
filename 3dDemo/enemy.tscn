@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://dl1qjoy04673b"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_vkc1o"]
+[ext_resource type="Texture2D" uid="uid://rxkjdyf1uuvs" path="res://Enemy.png" id="2_s8o44"]
+[ext_resource type="AudioStream" uid="uid://cb82pop0jirwx" path="res://VillagerDeath.mp3" id="3_6ty4n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c8pcq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf2us"]
+atlas = ExtResource("2_s8o44")
+region = Rect2(55, 0, 55, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq444"]
+atlas = ExtResource("2_s8o44")
+region = Rect2(0, 0, 55, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ian4b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf2us")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq444")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="enemy" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_vkc1o")
+move_speed = 3.0
+attack_range = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48248, 0)
+shape = SubResource("CapsuleShape3D_c8pcq")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(5.5881, 0, 0, 0, 5.5881, 0, 0, 0, 2.73698, 0, 1.29927, 0)
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_ian4b")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="DeathAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6ty4n")
+volume_db = 2.0

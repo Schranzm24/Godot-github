@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2hca4s8ieak4"]
+
+[ext_resource type="Script" path="res://Button2.gd" id="1_77drf"]
+
+[node name="Button" type="Button"]
+offset_left = 337.0
+offset_top = 399.0
+offset_right = 758.0
+offset_bottom = 541.0
+text = "GO BACK BUTTON"
+script = ExtResource("1_77drf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 94.0
+offset_top = -141.0
+offset_right = 320.0
+offset_bottom = -87.0
+text = "THIS IS A DIFFERENT SCENE"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

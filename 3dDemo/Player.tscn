@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjr06ntlw0vg2"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_t65tg"]
+[ext_resource type="Texture2D" uid="uid://dtqbcyg4nn86t" path="res://Untitled.png" id="1_xc0fu"]
+[ext_resource type="AudioStream" uid="uid://cb8al2w2h4d25" path="res://doom-pistol-sound-effect-iAoY4izUYtI.mp3" id="3_iy2wr"]
+[ext_resource type="AudioStream" uid="uid://blq53ei0jv3es" path="res://doomguy death sound effect.mp3" id="4_rq3wi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_021jx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ybpu"]
+atlas = ExtResource("1_xc0fu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm7lx"]
+atlas = ExtResource("1_xc0fu")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh4fk"]
+atlas = ExtResource("1_xc0fu")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbf5x"]
+atlas = ExtResource("1_xc0fu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7m3bn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ybpu")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_tm7lx")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_fh4fk")
+}, {
+"duration": 2.1,
+"texture": SubResource("AtlasTexture_tbf5x")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_t65tg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01193, 0)
+shape = SubResource("CapsuleShape3D_021jx")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.55, 0)
+target_position = Vector3(0, -50, 0)
+collision_mask = 3
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="gunBase" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/gunBase"]
+position = Vector2(195, -48)
+scale = Vector2(2.71875, 2.71875)
+sprite_frames = SubResource("SpriteFrames_7m3bn")
+animation = &"shoot"
+autoplay = "Idle"
+
+[node name="crossHair" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/crossHair"]
+layout_mode = 0
+offset_left = -562.0
+offset_top = 222.0
+offset_right = -343.0
+offset_bottom = 348.0
+text = "Arrow Keys: move
+Mouse click: shoot
+Esc: quit
+R: restart"
+
+[node name="deathScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/deathScreen"]
+layout_mode = 0
+offset_left = -60.0
+offset_top = -34.0
+offset_right = 100.0
+offset_bottom = 74.0
+
+[node name="Label" type="Label" parent="CanvasLayer/deathScreen"]
+layout_mode = 0
+offset_left = -41.0
+offset_top = -16.0
+offset_right = 81.0
+offset_bottom = 31.0
+text = "You Died!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/deathScreen"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 27.0
+offset_right = 64.0
+offset_bottom = 59.0
+text = "Restart"
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_iy2wr")
+volume_db = -2.0
+
+[node name="PlayerDeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rq3wi")
+volume_db = -2.0

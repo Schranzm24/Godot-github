@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blq53ei0jv3es"
+path="res://.godot/imported/doomguy death sound effect.mp3-40d0dfe761f3ecb86ef9e0fdd984c9ff.mp3str"
+
+[deps]
+
+source_file="res://doomguy death sound effect.mp3"
+dest_files=["res://.godot/imported/doomguy death sound effect.mp3-40d0dfe761f3ecb86ef9e0fdd984c9ff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

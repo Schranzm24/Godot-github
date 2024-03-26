@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2osipbmgwx01"]
+
+[ext_resource type="Script" path="res://Button1.gd" id="1_kdgm2"]
+
+[node name="Button" type="Button"]
+offset_left = 319.0
+offset_top = 137.0
+offset_right = 717.0
+offset_bottom = 336.0
+text = "MOVE TO NEXT SCENE"
+script = ExtResource("1_kdgm2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 275.0
+offset_right = 303.0
+offset_bottom = 335.0
+text = "THIS IS THE FIRST SCENE"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
